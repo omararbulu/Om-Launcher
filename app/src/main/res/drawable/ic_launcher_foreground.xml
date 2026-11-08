@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Sol sobre el horizonte -->
+    <path
+        android:fillColor="#F7E4D2"
+        android:pathData="M42,58 A12,12 0 0,1 66,58 Z" />
+    <!-- Franja de horizonte -->
+    <path
+        android:fillColor="#F2BFA2"
+        android:pathData="M18,54 L90,54 L90,58 L18,58 Z" />
+    <!-- Mar -->
+    <path
+        android:fillColor="#6C7F9C"
+        android:pathData="M18,58 L90,58 L90,66 L18,66 Z" />
+    <path
+        android:fillColor="#5E7090"
+        android:pathData="M18,68 L90,68 L90,74 L18,74 Z" />
+    <!-- Acantilado -->
+    <path
+        android:fillColor="#6E5F53"
+        android:pathData="M18,62 L30,64 L38,74 L46,90 L18,90 Z" />
+    <!-- Orilla -->
+    <path
+        android:fillColor="#8A7868"
+        android:pathData="M46,74 L90,74 L90,90 L46,90 Z" />
+</vector>
