@@ -262,7 +262,7 @@ fun OmApp(
     }
 
     MaterialTheme {
-        ProvideTextStyle(TextStyle(fontFamily = Outfit, color = ink.main)) {
+        ProvideTextStyle(TextStyle(fontFamily = Outfit)) {
             Box(Modifier.fillMaxSize()) {
                 if (prefs.landscape) Landscape(scene, Modifier.fillMaxSize())
 
@@ -310,7 +310,7 @@ fun OmApp(
                             events = events,
                             hasCalendar = permissions.calendar,
                             onRequestCalendar = { calendarPermission.launch(Manifest.permission.READ_CALENDAR) },
-                            onOpenCalendar = { SystemActions.openCalendar(context) },
+                            onOpenCalendar = { day -> SystemActions.openCalendar(context, day.startMillis()) },
                             widgets = widgets,
                             widgetIds = prefs.widgets,
                             onAddWidget = { pickingWidget = true },

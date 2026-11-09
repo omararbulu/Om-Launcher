@@ -26,14 +26,14 @@ val LightInk = Ink(Color(0xFFEDE9E2), Color(0xFFC9C4BC), light = true)
 data class Paper(val overlay: Color, val ink: Ink, val muted: Color, val line: Color, val accent: Color)
 
 val DayPaper = Paper(
-    overlay = Color(0xEBF4F1EC),
+    overlay = Color(0xF5F4F1EC),
     ink = DarkInk,
     muted = Color(0xFF4E5560),
     line = Color(0xFF9AA0A8),
     accent = Color(0xFF8A5A45),
 )
 val NightPaper = Paper(
-    overlay = Color(0xF0161A26),
+    overlay = Color(0xFB161A26),
     ink = LightInk,
     muted = Color(0xFFB4B0A9),
     line = Color(0xFF5A6070),

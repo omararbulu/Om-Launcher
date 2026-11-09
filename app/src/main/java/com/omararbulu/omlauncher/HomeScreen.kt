@@ -103,7 +103,7 @@ fun HomeScreen(
     ) {
         Column(Modifier.fillMaxSize()) {
             // Tiempo en pantalla, arriba a la derecha
-            Box(Modifier.fillMaxWidth().height(52.dp)) {
+            Box(Modifier.fillMaxWidth().heightIn(min = 52.dp)) {
                 if (prefs.showScreenTime) {
                     Column(
                         Modifier

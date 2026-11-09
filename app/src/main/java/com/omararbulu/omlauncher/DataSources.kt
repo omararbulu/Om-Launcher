@@ -33,12 +33,17 @@ object CalendarSource {
             PackageManager.PERMISSION_GRANTED
 
     /** Eventos desde hoy hasta dentro de [days] días, en orden. */
-    fun load(context: Context, days: Int = 7): List<CalEvent> {
+    fun load(context: Context, days: Int = 7): List<CalEvent> =
+        load(context, LocalDate.now(), LocalDate.now().plusDays(days.toLong()))
+
+    /** Eventos entre [from] (incluido) y [until] (excluido), en orden. */
+    fun load(context: Context, from: LocalDate, until: LocalDate): List<CalEvent> {
         if (!hasPermission(context)) return emptyList()
         val zone = ZoneId.systemDefault()
-        val today = LocalDate.now()
-        val start = today.atStartOfDay(zone).toInstant().toEpochMilli()
-        val end = today.plusDays(days.toLong()).atStartOfDay(zone).toInstant().toEpochMilli()
+        val today = from
+        val days = java.time.temporal.ChronoUnit.DAYS.between(from, until).coerceAtLeast(1)
+        val start = from.atStartOfDay(zone).toInstant().toEpochMilli()
+        val end = until.atStartOfDay(zone).toInstant().toEpochMilli()
         val builder = CalendarContract.Instances.CONTENT_URI.buildUpon()
         ContentUris.appendId(builder, start)
         ContentUris.appendId(builder, end)
@@ -67,7 +72,7 @@ object CalendarSource {
                         val d0 = Instant.ofEpochMilli(b).atZone(ZoneOffset.UTC).toLocalDate()
                         val d1 = Instant.ofEpochMilli(e).atZone(ZoneOffset.UTC).toLocalDate()
                         var d = if (d0.isBefore(today)) today else d0
-                        while (d.isBefore(d1) && d.isBefore(today.plusDays(days.toLong()))) {
+                        while (d.isBefore(d1) && d.isBefore(today.plusDays(days))) {
                             result += CalEvent(title, d.atStartOfDay(), d.plusDays(1).atStartOfDay(), true, d)
                             d = d.plusDays(1)
                         }

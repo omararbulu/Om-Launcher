@@ -14,6 +14,7 @@ object Fmt {
     )
 
     fun dayShort(d: LocalDate) = daysShort[d.dayOfWeek.value - 1]
+    fun monthName(m: Int) = monthsLong[m - 1].replaceFirstChar { it.uppercase() }
     fun dayLong(d: LocalDate) = daysLong[d.dayOfWeek.value - 1]
 
     fun time(t: LocalDateTime, is24: Boolean): String =

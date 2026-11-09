@@ -188,16 +188,16 @@ fun AppDrawer(
                             )
                             Text(r.label, fontSize = 20.sp, color = ink.main, maxLines = 1)
                         }
-                        DropdownMenu(expanded = menu, onDismissRequest = { menu = false }) {
+                        DropdownMenu(expanded = menu, onDismissRequest = { menu = false }, containerColor = SheetBg) {
                             val fav = r.entry.key in prefs.favorites
                             DropdownMenuItem(
-                                text = { Text(if (fav) "Quitar de favoritas" else "Agregar a favoritas") },
+                                text = { Text(if (fav) "Quitar de favoritas" else "Agregar a favoritas", color = Charcoal, fontSize = 16.sp) },
                                 onClick = { menu = false; actions.toggleFavorite(r.entry) },
                             )
-                            DropdownMenuItem(text = { Text("Renombrar") }, onClick = { menu = false; actions.rename(r.entry) })
-                            DropdownMenuItem(text = { Text("Ocultar") }, onClick = { menu = false; actions.hide(r.entry) })
+                            DropdownMenuItem(text = { Text("Renombrar", color = Charcoal, fontSize = 16.sp) }, onClick = { menu = false; actions.rename(r.entry) })
+                            DropdownMenuItem(text = { Text("Ocultar", color = Charcoal, fontSize = 16.sp) }, onClick = { menu = false; actions.hide(r.entry) })
                             DropdownMenuItem(
-                                text = { Text("Información de la app") },
+                                text = { Text("Información de la app", color = Charcoal, fontSize = 16.sp) },
                                 onClick = { menu = false; actions.appInfo(r.entry) },
                             )
                         }

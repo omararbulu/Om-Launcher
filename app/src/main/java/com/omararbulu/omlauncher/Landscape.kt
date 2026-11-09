@@ -148,13 +148,17 @@ fun Landscape(scene: Scene, modifier: Modifier = Modifier) {
             y += h
         }
         for (i in 0..4) band(i)
-        if (scene.stars > 0.01f) {
+        // La luna y las estrellas esperan a que el cielo esté oscuro: a media luz se ven como manchas grises.
+        val night = ((scene.dark - 0.5f) * 2f).coerceIn(0f, 1f)
+        val starAlpha = scene.stars * night
+        val moonAlpha = scene.moon * night
+        if (starAlpha > 0.01f) {
             STARS.forEach { (x, yy, r) ->
-                drawCircle(MoonColor.copy(alpha = scene.stars), r * sy, Offset(x * sx, yy * sy))
+                drawCircle(MoonColor.copy(alpha = starAlpha), r * sy, Offset(x * sx, yy * sy))
             }
         }
-        if (scene.moon > 0.01f) {
-            drawCircle(MoonColor.copy(alpha = scene.moon), 18f * sy, Offset(298f * sx, 158f * sy))
+        if (moonAlpha > 0.01f) {
+            drawCircle(MoonColor.copy(alpha = moonAlpha), 18f * sy, Offset(298f * sx, 158f * sy))
         }
         drawCircle(scene.sun, scene.sunR * sy, Offset(scene.sunX * sx, scene.sunY * sy))
         for (i in 5..10) band(i)

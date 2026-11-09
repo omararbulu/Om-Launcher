@@ -54,9 +54,9 @@ object SystemActions {
         }
     }
 
-    fun openCalendar(context: Context) {
+    fun openCalendar(context: Context, millis: Long = System.currentTimeMillis()) {
         val uri = CalendarContract.CONTENT_URI.buildUpon().appendPath("time")
-            .appendPath(System.currentTimeMillis().toString()).build()
+            .appendPath(millis.toString()).build()
         runCatching {
             context.startActivity(Intent(Intent.ACTION_VIEW).setData(uri).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         }
